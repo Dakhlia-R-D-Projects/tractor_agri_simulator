@@ -1,0 +1,562 @@
+<?xml version="1.0"?>
+<!-- Seed: 6560 -->
+<sdf version="1.9">
+  <world name="virtual_maize_field">
+
+    <!-- Change max step size to increase the simulation speed but decrease the accuracy. -->
+    <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+    <render_engine>ogre2</render_engine>
+    <!-- <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'/> -->
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/>
+    <plugin name='gz::sim::systems::AirPressure' filename='gz-sim-air-pressure-system'/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <gui fullscreen="0">
+        <!-- 3D scene -->
+      <plugin filename="GzScene3D" name="3D View">
+      <ignition-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+      </ignition-gui>
+
+    <engine>ogre2</engine>
+      <scene>scene</scene>
+      <ambient_light>1.0 1.0 1.0</ambient_light>
+      <background_color>0.8 0.8 0.8</background_color>
+      <camera_pose>-6 0 6 0 0.5 0</camera_pose>
+    </plugin>
+
+    <!-- World control -->
+    <plugin filename="WorldControl" name="World control">
+      <ignition-gui>
+        <title>World control</title>
+        <property type="bool" key="showTitleBar">false</property>
+        <property type="bool" key="resizable">false</property>
+        <property type="double" key="height">72</property>
+        <property type="double" key="width">121</property>
+        <property type="double" key="z">1</property>
+
+        <property type="string" key="state">floating</property>
+        <anchors target="3D View">
+          <line own="left" target="left"/>
+          <line own="bottom" target="bottom"/>
+        </anchors>
+      </ignition-gui>
+
+      <play_pause>true</play_pause>
+      <step>true</step>
+      <service>/world/virtual_maize_field/control</service>
+      <stats_topic>/world/virtual_maize_field/stats</stats_topic>
+
+    </plugin>
+
+    <!-- World statistics -->
+    <plugin filename="WorldStats" name="World stats">
+        <ignition-gui>
+            <title>World stats</title>
+            <property type="bool" key="showTitleBar">false</property>
+            <property type="bool" key="resizable">false</property>
+            <property type="double" key="height">110</property>
+            <property type="double" key="width">290</property>
+            <property type="double" key="z">1</property>
+
+            <property type="string" key="state">floating</property>
+            <anchors target="3D View">
+            <line own="right" target="right"/>
+            <line own="bottom" target="bottom"/>
+            </anchors>
+        </ignition-gui>
+
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+        <topic>/world/virtual_maize_field/stats</topic>
+
+    </plugin>
+
+    <!-- Entity tree -->
+    <plugin filename="EntityTree" name="Entity tree">
+    </plugin>
+  </gui>
+
+    <light type="directional" name="sun">
+      <!-- Disable shadows to avoid flickering on non-gpu pc, see: 
+           https://github.com/gazebosim/gz-sim/issues/2267 -->
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+      <grid>false</grid>
+    </scene>
+
+    <model name="heightmap">
+      <static>true</static>
+      <link name="link">
+        <visual name="ground_plane">
+          <geometry>
+            <heightmap>
+              <use_terrain_paging>false</use_terrain_paging>
+              <texture>
+                <diffuse>model://materials/textures/grass_color.jpg</diffuse>
+                <normal>model://materials/textures/grass_normal.jpg</normal>
+                <size>4</size>
+              </texture>
+              <texture>
+                <diffuse>model://materials/textures/dirt_diffusespecular.png</diffuse>
+                <normal>model://materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <!-- <texture>
+                <diffuse>model://materials/textures/grass_color.jpg</diffuse>
+                <normal>model://materials/textures/grass_normal.jpg</normal>
+                <size>4</size>
+              </texture> -->
+              <!-- Without this unused 3. texture the blend between the first 2 doesn"t work -->
+              <texture>
+                <diffuse>model://materials/textures/fungus_diffusespecular.png</diffuse>
+                <normal>model://materials/textures/flat_normal.png</normal>
+                <size>1</size>
+              </texture>
+              <blend>
+                <min_height>0.0001</min_height>
+                <fade_dist>0.05</fade_dist>
+              </blend>
+              <!-- <blend>
+                <min_height>0.00010000000000000002</min_height>
+                <fade_dist>0.05</fade_dist>
+              </blend> -->
+              <!-- Without this unused 3. texture the blend between the first 2 doesn"t work -->
+              <blend>
+                <min_height>4</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <uri>/home/ebrahim/.ros/virtual_maize_field/virtual_maize_field_heightmap.png</uri>
+              <size>127.0 127.0 0.00015000000000000001</size>
+              <pos>0 0 0</pos>
+            </heightmap>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+              <uri>/home/ebrahim/.ros/virtual_maize_field/virtual_maize_field_heightmap.png</uri>
+              <size>127.0 127.0 0.00015000000000000001</size>
+              <pos>0 0 0</pos>
+            </heightmap>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.250298984447443 -53.08032738024518 0.0001388891275623254 0.0 0.0 5.122676504835857</pose>
+      <name>natroon_palm_0000</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.226288639959986 -46.0480258659256 0.0001292012525160232 0.0 0.0 0.2523614224011317</pose>
+      <name>natroon_palm_0001</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.224839058655967 -39.04889455553757 0.00011474894838175704 0.0 0.0 2.26101711948433</pose>
+      <name>natroon_palm_0002</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.218114961623378 -32.025320592017124 0.00010565595816979172 0.0 0.0 6.079571598626657</pose>
+      <name>natroon_palm_0003</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.247030678159273 -24.989218226280126 9.428343261467648e-05 0.0 0.0 4.840435251044667</pose>
+      <name>natroon_palm_0004</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.231171388770658 -17.903515898841352 9.128830921597732e-05 0.0 0.0 5.742301403415969</pose>
+      <name>natroon_palm_0005</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.231418678974748 -10.792107159150529 7.09379581793446e-05 0.0 0.0 4.409359461630479</pose>
+      <name>natroon_palm_0006</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.255996361401895 -3.7769406480847847 8.362961397254156e-05 0.0 0.0 4.824656900422648</pose>
+      <name>natroon_palm_0007</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.246702506947717 3.2444215750634884 7.664525882162125e-05 0.0 0.0 4.057553355791176</pose>
+      <name>natroon_palm_0008</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.239441794059292 10.308031751250784 8.199914361600755e-05 0.0 0.0 4.7248365536947645</pose>
+      <name>natroon_palm_0009</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.239949112180025 17.334446231396928 8.428628599503752e-05 0.0 0.0 3.2404726416233673</pose>
+      <name>natroon_palm_0010</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.22577909739077 24.35713892512587 7.432949226694102e-05 0.0 0.0 5.068195540289705</pose>
+      <name>natroon_palm_0011</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.237855953095046 31.370295390262587 8.377791803566208e-05 0.0 0.0 6.1648023844111535</pose>
+      <name>natroon_palm_0012</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.220074297747857 38.40448694618829 7.942576693040047e-05 0.0 0.0 4.165943016215512</pose>
+      <name>natroon_palm_0013</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.243751360439646 45.48003787750448 8.807329479704583e-05 0.0 0.0 6.111335295651688</pose>
+      <name>natroon_palm_0014</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-10.218333023912333 52.5019674507386 9.534461866472211e-05 0.0 0.0 2.0982509171770376</pose>
+      <name>natroon_palm_0015</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.23640183637575785 -53.121322600503255 0.00011490594064212562 0.0 0.0 1.1052954841006446</pose>
+      <name>natroon_palm_0016</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.24612220493583425 -46.04199461747002 0.00010287653840072181 0.0 0.0 1.8381505197533348</pose>
+      <name>natroon_palm_0017</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.2232686390967773 -38.99977942276765 8.230797238507534e-05 0.0 0.0 4.34296255404755</pose>
+      <name>natroon_palm_0018</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.2570183664591861 -31.951654825550566 0.0001070257456377317 0.0 0.0 3.241674987556866</pose>
+      <name>natroon_palm_0019</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.25229899603778616 -24.878865941801028 0.00010961338875924949 0.0 0.0 0.00887205553345866</pose>
+      <name>natroon_palm_0020</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.24709852184873338 -17.822243551371752 9.793190015977534e-05 0.0 0.0 3.666538668943955</pose>
+      <name>natroon_palm_0021</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.23397195188812692 -10.7094938809451 8.612868415917992e-05 0.0 0.0 4.250910161995748</pose>
+      <name>natroon_palm_0022</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.2539128800757515 -3.6565564915116324 8.723652786461376e-05 0.0 0.0 4.48595448826839</pose>
+      <name>natroon_palm_0023</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.24050398950936813 3.3438147235777693 8.724035846660068e-05 0.0 0.0 1.122393957676936</pose>
+      <name>natroon_palm_0024</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.2291449221702644 10.38096648530875 9.414503236530877e-05 0.0 0.0 1.256521875489722</pose>
+      <name>natroon_palm_0025</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.22193241888286774 17.414740913008547 8.852755140556594e-05 0.0 0.0 4.805992921267052</pose>
+      <name>natroon_palm_0026</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.24739863246346605 24.471323622841258 7.801698450836001e-05 0.0 0.0 3.199497057620422</pose>
+      <name>natroon_palm_0027</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.23015554345466338 31.498367117039326 9.438275815942972e-05 0.0 0.0 5.705508831297542</pose>
+      <name>natroon_palm_0028</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.2192587274622193 38.58206730538023 9.0027196178925e-05 0.0 0.0 3.295363137975442</pose>
+      <name>natroon_palm_0029</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.2331522222010305 45.64928002451939 0.00010499487133240546 0.0 0.0 1.0058908045254118</pose>
+      <name>natroon_palm_0030</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>-0.24479475603450584 52.73919978407394 0.0001042869494153413 0.0 0.0 3.6599254841473035</pose>
+      <name>natroon_palm_0031</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.76393428777633 -53.18831039256802 9.529296578503884e-05 0.0 0.0 1.6119042522286982</pose>
+      <name>natroon_palm_0032</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.757020285515704 -46.1603727662807 0.00010384634743992204 0.0 0.0 3.0477094499105086</pose>
+      <name>natroon_palm_0033</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.743530516199769 -39.086158732631105 0.0001019656702989703 0.0 0.0 4.597575979194805</pose>
+      <name>natroon_palm_0034</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.7643117105597 -32.04613776291936 8.799671424774537e-05 0.0 0.0 5.666419533764743</pose>
+      <name>natroon_palm_0035</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.762437439779635 -25.00949104457875 9.76725400945116e-05 0.0 0.0 4.77747829402898</pose>
+      <name>natroon_palm_0036</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.76521957295327 -17.955930876602725 9.049802886439117e-05 0.0 0.0 0.5493721146035246</pose>
+      <name>natroon_palm_0037</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.747649154731587 -10.915509869204161 9.079835093911229e-05 0.0 0.0 1.3613079399713433</pose>
+      <name>natroon_palm_0038</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.760041456189562 -3.878093043058459 0.00010328857892403538 0.0 0.0 1.6355035956867978</pose>
+      <name>natroon_palm_0039</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.767477580342074 3.12164691204993 0.00011616370824366407 0.0 0.0 2.369055831939692</pose>
+      <name>natroon_palm_0040</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.780453124441003 10.213207598650268 9.141603651848204e-05 0.0 0.0 4.829704724732363</pose>
+      <name>natroon_palm_0041</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.780754064989441 17.240553816151237 0.00011378797397544424 0.0 0.0 0.46084678995558176</pose>
+      <name>natroon_palm_0042</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.774363061355622 24.27263698059682 0.00010737345806685616 0.0 0.0 0.9005365071721092</pose>
+      <name>natroon_palm_0043</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.76037316648464 31.291245000367343 9.802810641098432e-05 0.0 0.0 2.6527466050803024</pose>
+      <name>natroon_palm_0044</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.774204924066268 38.311032471120505 8.662898680746317e-05 0.0 0.0 5.996983366517957</pose>
+      <name>natroon_palm_0045</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.780768232613088 45.38557123020181 9.323014937011507e-05 0.0 0.0 5.139133393794868</pose>
+      <name>natroon_palm_0046</name>
+      <static>true</static>
+    </include> 
+     
+     
+    <include>
+      <uri>model://natroon_palm</uri>
+      <pose>9.754284039394708 52.48921859869467 9.256782094861419e-05 0.0 0.0 1.820011262401699</pose>
+      <name>natroon_palm_0047</name>
+      <static>true</static>
+    </include> 
+    </world>
+</sdf>

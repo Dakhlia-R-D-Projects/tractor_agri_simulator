@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Tractor4">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.10143 -0.00047213 0.12058"
+        rpy="0 0 0" />
+      <mass
+        value="173.31" />
+      <inertia
+        ixx="5.0819"
+        ixy="0.0048009"
+        ixz="-0.024768"
+        iyy="6.8242"
+        iyz="-0.0042735"
+        izz="9.0147" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25 0.25 0.25 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="dk_logo_frame">
+    <inertial>
+      <origin
+        xyz="-0.099222 -2.0817E-17 -0.0125"
+        rpy="0 0 0" />
+      <mass
+        value="0.0098297" />
+      <inertia
+        ixx="1.0288E-06"
+        ixy="-5.5081E-22"
+        ixz="-2.3552E-22"
+        iyy="3.4651E-06"
+        iyz="-1.4012E-23"
+        izz="4.4529E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/dk_logo_frame.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/dk_logo_frame.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="dk_logo_frame_joint"
+    type="fixed">
+    <origin
+      xyz="1.34990899028511 0.00301220430976148 -0.0329999999999998"
+      rpy="-1.5707963267949 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="dk_logo_frame" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="dk_word">
+    <inertial>
+      <origin
+        xyz="0.00035618 -0.00013532 -0.012369"
+        rpy="0 0 0" />
+      <mass
+        value="0.00040282" />
+      <inertia
+        ixx="6.16E-09"
+        ixy="-1.4975E-10"
+        ixz="-1.0686E-14"
+        iyy="3.35E-09"
+        iyz="-6.2806E-16"
+        izz="8.7329E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/dk_word.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/dk_word.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="dk_word_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0992222959492163 0 -0.00300000000000011"
+      rpy="0 0 0" />
+    <parent
+      link="dk_logo_frame" />
+    <child
+      link="dk_word" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="inovation_word">
+    <inertial>
+      <origin
+        xyz="0.01677 0.0015005 -0.013"
+        rpy="0 0 0" />
+      <mass
+        value="0.0076677" />
+      <inertia
+        ixx="1.7789E-07"
+        ixy="-5.6737E-09"
+        ixz="1.1923E-13"
+        iyy="1.4187E-07"
+        iyz="8.9729E-14"
+        izz="2.7375E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/inovation_word.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/inovation_word.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="inovation_word_joint"
+    type="fixed">
+    <origin
+      xyz="0.01 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="dk_logo_frame" />
+    <child
+      link="inovation_word" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="backplate">
+    <inertial>
+      <origin
+        xyz="-0.0030122 -2.0817E-17 -0.005"
+        rpy="0 0 0" />
+      <mass
+        value="0.15" />
+      <inertia
+        ixx="3.25E-05"
+        ixy="-1.676E-19"
+        ixz="-4.6118E-20"
+        iyy="0.0011263"
+        iyz="-8.8258E-22"
+        izz="0.0011563" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/backplate.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/backplate.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="backplate_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="dk_logo_frame" />
+    <child
+      link="backplate" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="body">
+    <inertial>
+      <origin
+        xyz="-0.0001275 0.063879 0.032556"
+        rpy="0 0 0" />
+      <mass
+        value="13.925" />
+      <inertia
+        ixx="1.4999"
+        ixy="-0.00044694"
+        ixz="-0.00095531"
+        iyy="1.5016"
+        iyz="-0.014001"
+        izz="0.77067" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.38039 0.47843 0.78824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_joint"
+    type="fixed">
+    <origin
+      xyz="0.112908990285108 0 0.436438756216135"
+      rpy="1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="body" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ligth">
+    <inertial>
+      <origin
+        xyz="-0.7425 0.0026349 -0.019674"
+        rpy="0 0 0" />
+      <mass
+        value="0.058713" />
+      <inertia
+        ixx="2.6507E-05"
+        ixy="2.4665E-11"
+        ixz="3.4099E-12"
+        iyy="5.9604E-05"
+        iyz="-1.6742E-06"
+        izz="7.1881E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/ligth.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/ligth.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ligth_joint"
+    type="fixed">
+    <origin
+      xyz="0.7425 0.181034790991385 0.394057481279846"
+      rpy="0.718829999621625 0 0" />
+    <parent
+      link="body" />
+    <child
+      link="ligth" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rear_left_motor">
+    <inertial>
+      <origin
+        xyz="0 -0.019645 0"
+        rpy="0 0 0" />
+      <mass
+        value="1.1526" />
+      <inertia
+        ixx="0.0032601"
+        ixy="1.2716E-19"
+        ixz="-5.4387E-19"
+        iyy="0.0059794"
+        iyz="-5.9776E-19"
+        izz="0.0032601" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_left_motor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25 0.25 0.25 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_left_motor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_left_motor_joint"
+    type="continuous">
+    <origin
+      xyz="-0.650000000000011 0.78 0.0549999999999922"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_left_motor" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="rear_left_rim">
+    <inertial>
+      <origin
+        xyz="0.0070711 0.05822 -0.0070711"
+        rpy="0 0 0" />
+      <mass
+        value="6.243" />
+      <inertia
+        ixx="0.2913"
+        ixy="-1.7596E-16"
+        ixz="-5.8547E-16"
+        iyy="0.53914"
+        iyz="5.1286E-17"
+        izz="0.2913" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_left_rim.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_left_rim.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_left_rim_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00729568849475126 0 0.00683907372292141"
+      rpy="3.14159265358978 1.53850317412577 0" />
+    <parent
+      link="rear_left_motor" />
+    <child
+      link="rear_left_rim" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rear_left_tyre">
+    <inertial>
+      <origin
+        xyz="0.00015314 7.4582E-09 -7.7559E-10"
+        rpy="0 0 0" />
+      <mass
+        value="18.33" />
+      <inertia
+        ixx="4.5465"
+        ixy="-2.3447E-09"
+        ixz="3.4936E-10"
+        iyy="2.4106"
+        iyz="-6.7415E-10"
+        izz="2.4106" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_left_tyre.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_left_tyre.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_left_tyre_joint"
+    type="fixed">
+    <origin
+      xyz="0.00707106781186501 0.0780000000000001 -0.00707106781186562"
+      rpy="-1.57079632679489 0 -1.5707963267949" />
+    <parent
+      link="rear_left_rim" />
+    <child
+      link="rear_left_tyre" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rear_right_motor">
+    <inertial>
+      <origin
+        xyz="0 -0.019645 -1.3878E-17"
+        rpy="0 0 0" />
+      <mass
+        value="1.1526" />
+      <inertia
+        ixx="0.0032601"
+        ixy="-3.1038E-20"
+        ixz="7.8169E-20"
+        iyy="0.0059794"
+        iyz="-1.4541E-19"
+        izz="0.0032601" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_right_motor.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25 0.25 0.25 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_right_motor.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_right_motor_joint"
+    type="continuous">
+    <origin
+      xyz="-0.650000000000011 -0.77 0.0549999999999923"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_right_motor" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="rear_right_rim">
+    <inertial>
+      <origin
+        xyz="0.0070711 0.031209 -0.0070711"
+        rpy="0 0 0" />
+      <mass
+        value="6.243" />
+      <inertia
+        ixx="0.2913"
+        ixy="7.8494E-18"
+        ixz="-7.2858E-16"
+        iyy="0.53914"
+        iyz="2.6081E-16"
+        izz="0.2913" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_right_rim.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_right_rim.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_right_rim_joint"
+    type="fixed">
+    <origin
+      xyz="0.00957065582978023 0 -0.0028987147130916"
+      rpy="-3.14159265358979 0.491305622929175 -3.14159265358979" />
+    <parent
+      link="rear_right_motor" />
+    <child
+      link="rear_right_rim" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rear_right_tyre">
+    <inertial>
+      <origin
+        xyz="-0.014847 7.4582E-09 -7.7559E-10"
+        rpy="0 0 0" />
+      <mass
+        value="18.33" />
+      <inertia
+        ixx="4.5465"
+        ixy="-2.3447E-09"
+        ixz="3.4936E-10"
+        iyy="2.4106"
+        iyz="-6.7416E-10"
+        izz="2.4106" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_right_tyre.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/rear_right_tyre.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_right_tyre_joint"
+    type="fixed">
+    <origin
+      xyz="0.00707106781186506 0.013 -0.00707106781186595"
+      rpy="1.0471975511966 0 -1.5707963267949" />
+    <parent
+      link="rear_right_rim" />
+    <child
+      link="rear_right_tyre" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="front_left_steering">
+    <inertial>
+      <origin
+        xyz="-1.2392E-07 0.016236 -0.12249"
+        rpy="0 0 0" />
+      <mass
+        value="1.0781" />
+      <inertia
+        ixx="0.01337"
+        ixy="5.0751E-09"
+        ixz="-1.229E-08"
+        iyy="0.012202"
+        iyz="0.0014478"
+        izz="0.0019332" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_steering.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.77647 0.75686 0.73725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_steering.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_steering_joint"
+    type="continuous">
+    <origin
+      xyz="1.11990899028511 0.412395277334996 -0.051176930361465"
+      rpy="0.174532925199433 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_steering" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="front_left_wheel">
+    <inertial>
+      <origin
+        xyz="-3.2512E-12 -0.047204 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.87472" />
+      <inertia
+        ixx="0.0015647"
+        ixy="6.6305E-14"
+        ixz="2.754E-19"
+        iyy="0.0025275"
+        iyz="-1.8908E-20"
+        izz="0.0015647" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25 0.25 0.25 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.19203751183738 -0.223861394645051"
+      rpy="-0.174532925199433 0 0" />
+    <parent
+      link="front_left_steering" />
+    <child
+      link="front_left_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="front_left_rim">
+    <inertial>
+      <origin
+        xyz="0.0060975 6.22E-13 -9.1727E-13"
+        rpy="0 0 0" />
+      <mass
+        value="1.1956" />
+      <inertia
+        ixx="0.041393"
+        ixy="7.7014E-13"
+        ixz="-1.1354E-12"
+        iyy="0.021473"
+        iyz="-4.3368E-18"
+        izz="0.021473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_rim.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_rim.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_rim_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.01 0"
+      rpy="-2.1668017780166 0 -1.5707963267949" />
+    <parent
+      link="front_left_wheel" />
+    <child
+      link="front_left_rim" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="front_left_tyre">
+    <inertial>
+      <origin
+        xyz="0.0092911 -0.0036972 -0.00099946"
+        rpy="0 0 0" />
+      <mass
+        value="6.7245" />
+      <inertia
+        ixx="0.28659"
+        ixy="-2.7756E-17"
+        ixz="1.5144E-11"
+        iyy="0.28659"
+        iyz="2.4991E-08"
+        izz="0.55229" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_tyre.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_left_tyre.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_tyre_joint"
+    type="fixed">
+    <origin
+      xyz="0.00300000000000011 0.0100000000005028 0"
+      rpy="1.5707963267949 -0.378785424351487 -1.5707963267949" />
+    <parent
+      link="front_left_rim" />
+    <child
+      link="front_left_tyre" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="front_right_steering">
+    <inertial>
+      <origin
+        xyz="1.2392E-07 -0.016236 -0.12249"
+        rpy="0 0 0" />
+      <mass
+        value="1.0781" />
+      <inertia
+        ixx="0.01337"
+        ixy="5.0752E-09"
+        ixz="1.229E-08"
+        iyy="0.012202"
+        iyz="-0.0014478"
+        izz="0.0019332" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_steering.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.77647 0.75686 0.73725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_steering.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_steering_joint"
+    type="continuous">
+    <origin
+      xyz="1.11990899028511 -0.412395277334996 -0.0511769303614647"
+      rpy="-0.174532925199433 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_steering" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="front_right_wheel">
+    <inertial>
+      <origin
+        xyz="0 -0.047204 -4.7184E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.87472" />
+      <inertia
+        ixx="0.0015647"
+        ixy="6.3611E-20"
+        ixz="1.1021E-19"
+        iyy="0.0025275"
+        iyz="1.0195E-17"
+        izz="0.0015647" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25 0.25 0.25 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0 -0.19203751183738 -0.223861394645056"
+      rpy="-0.174532925199444 0 3.14159265358979" />
+    <parent
+      link="front_right_steering" />
+    <child
+      link="front_right_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="front_right_rim">
+    <inertial>
+      <origin
+        xyz="0.0020975 0 2.2204E-16"
+        rpy="0 0 0" />
+      <mass
+        value="1.1956" />
+      <inertia
+        ixx="0.041393"
+        ixy="2.2166E-18"
+        ixz="6.3474E-19"
+        iyy="0.021473"
+        iyz="-7.7195E-17"
+        izz="0.021473" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_rim.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_rim.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_rim_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.014 0"
+      rpy="-2.13568726406672 0 -1.5707963267949" />
+    <parent
+      link="front_right_wheel" />
+    <child
+      link="front_right_rim" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="front_right_tyre">
+    <inertial>
+      <origin
+        xyz="-1.1102E-16 6.8949E-07 5.4238E-07"
+        rpy="0 0 0" />
+      <mass
+        value="6.7245" />
+      <inertia
+        ixx="0.28659"
+        ixy="-5.5511E-17"
+        ixz="1.0699E-17"
+        iyy="0.28659"
+        iyz="2.0423E-08"
+        izz="0.55229" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_tyre.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/front_right_tyre.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_tyre_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 -1.5707963267949 0" />
+    <parent
+      link="front_right_rim" />
+    <child
+      link="front_right_tyre" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="driver">
+    <inertial>
+      <origin
+        xyz="-0.36231 0.3011 -1.7641E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.69304" />
+      <inertia
+        ixx="0.011426"
+        ixy="0.0028151"
+        ixz="-9.0842E-08"
+        iyy="0.018135"
+        iyz="2.219E-08"
+        izz="0.010401" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/driver.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tractor_description/meshes/visual/driver.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="driver_joint"
+    type="fixed">
+    <origin
+      xyz="-0.452284271247459 0 0.535000000000002"
+      rpy="1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="driver" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

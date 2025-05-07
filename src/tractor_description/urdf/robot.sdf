@@ -1,0 +1,1193 @@
+<sdf version="1.11">
+  <model name="Tractor4">
+    <link name="base_link">
+      <inertial>
+        <pose>0.10143000000000001 -0.00047213000000000002 0.12058000000000001 0 0 0</pose>
+        <mass>173.31</mass>
+        <inertia>
+          <ixx>5.0819000000000001</ixx>
+          <ixy>0.0048009000000000003</ixy>
+          <ixz>-0.024767999999999998</ixz>
+          <iyy>6.8242000000000003</iyy>
+          <iyz>-0.0042735000000000004</iyz>
+          <izz>9.0146999999999995</izz>
+        </inertia>
+      </inertial>
+      <collision name="base_link_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="base_link_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.3125 0.3125 0.3125 1</diffuse>
+          <ambient>0.3125 0.3125 0.3125 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="body_joint" type="fixed">
+      <pose relative_to="base_link">0.11290899028510799 0 0.43643875621613498 1.5707963267949003 5.5511151231257827e-17 -1.5707963267949003</pose>
+      <parent>base_link</parent>
+      <child>body</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="body">
+      <pose relative_to="body_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.00012750000000000001 0.063879000000000005 0.032556000000000002 0 0 0</pose>
+        <mass>13.925000000000001</mass>
+        <inertia>
+          <ixx>1.4999</ixx>
+          <ixy>-0.00044694</ixy>
+          <ixz>-0.00095531000000000001</ixz>
+          <iyy>1.5016</iyy>
+          <iyz>-0.014001</iyz>
+          <izz>0.77066999999999997</izz>
+        </inertia>
+      </inertial>
+      <collision name="body_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/body.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="body_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/body.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.475487471 0.598037481 0.985300004 1</diffuse>
+          <ambient>0.475487471 0.598037481 0.985300004 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="ligth_joint" type="fixed">
+      <pose relative_to="body">0.74250000000000005 0.181034790991385 0.39405748127984602 0.71882999962162519 0 0</pose>
+      <parent>body</parent>
+      <child>ligth</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="ligth">
+      <pose relative_to="ligth_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.74250000000000005 0.0026348999999999999 -0.019674000000000001 0 0 0</pose>
+        <mass>0.058713000000000001</mass>
+        <inertia>
+          <ixx>2.6506999999999999e-05</ixx>
+          <ixy>2.4665e-11</ixy>
+          <ixz>3.4098999999999998e-12</ixz>
+          <iyy>5.9604000000000001e-05</iyy>
+          <iyz>-1.6742e-06</iyz>
+          <izz>7.1880999999999998e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name="ligth_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/ligth.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="ligth_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/ligth.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 0 1</diffuse>
+          <ambient>1 1 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="dk_logo_frame_joint" type="fixed">
+      <pose relative_to="base_link">1.34990899028511 0.00301220430976148 -0.0329999999999998 -1.5707963267949003 5.5511151231257827e-17 1.5707963267949003</pose>
+      <parent>base_link</parent>
+      <child>dk_logo_frame</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="dk_logo_frame">
+      <pose relative_to="dk_logo_frame_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.099222000000000005 -2.0816999999999999e-17 -0.012500000000000001 0 0 0</pose>
+        <mass>0.0098297000000000002</mass>
+        <inertia>
+          <ixx>1.0288e-06</ixx>
+          <ixy>-5.5080999999999999e-22</ixy>
+          <ixz>-2.3551999999999999e-22</ixz>
+          <iyy>3.4651000000000001e-06</iyy>
+          <iyz>-1.4012000000000001e-23</iyz>
+          <izz>4.4529000000000002e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name="dk_logo_frame_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/dk_logo_frame.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="dk_logo_frame_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/dk_logo_frame.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+          <ambient>0 0 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="backplate_joint" type="fixed">
+      <pose relative_to="dk_logo_frame">0 0 0 0 0 0</pose>
+      <parent>dk_logo_frame</parent>
+      <child>backplate</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="backplate">
+      <pose relative_to="backplate_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.0030122 -2.0816999999999999e-17 -0.0050000000000000001 0 0 0</pose>
+        <mass>0.14999999999999999</mass>
+        <inertia>
+          <ixx>3.2499999999999997e-05</ixx>
+          <ixy>-1.676e-19</ixy>
+          <ixz>-4.6118000000000001e-20</ixz>
+          <iyy>0.0011263</iyy>
+          <iyz>-8.8257999999999996e-22</iyz>
+          <izz>0.0011563000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name="backplate_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/backplate.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="backplate_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/backplate.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="dk_word_joint" type="fixed">
+      <pose relative_to="dk_logo_frame">-0.099222295949216305 0 -0.0030000000000001098 0 0 0</pose>
+      <parent>dk_logo_frame</parent>
+      <child>dk_word</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="dk_word">
+      <pose relative_to="dk_word_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.00035617999999999999 -0.00013532 -0.012369 0 0 0</pose>
+        <mass>0.00040282000000000002</mass>
+        <inertia>
+          <ixx>6.1600000000000002e-09</ixx>
+          <ixy>-1.4975e-10</ixy>
+          <ixz>-1.0686e-14</ixz>
+          <iyy>3.3499999999999998e-09</iyy>
+          <iyz>-6.2805999999999999e-16</iyz>
+          <izz>8.7329000000000007e-09</izz>
+        </inertia>
+      </inertial>
+      <collision name="dk_word_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/dk_word.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="dk_word_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/dk_word.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="inovation_word_joint" type="fixed">
+      <pose relative_to="dk_logo_frame">0.01 0 0 0 0 0</pose>
+      <parent>dk_logo_frame</parent>
+      <child>inovation_word</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="inovation_word">
+      <pose relative_to="inovation_word_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.01677 0.0015005000000000001 -0.012999999999999999 0 0 0</pose>
+        <mass>0.0076677000000000004</mass>
+        <inertia>
+          <ixx>1.7788999999999999e-07</ixx>
+          <ixy>-5.6737000000000004e-09</ixy>
+          <ixz>1.1922999999999999e-13</ixz>
+          <iyy>1.4187000000000001e-07</iyy>
+          <iyz>8.9729000000000003e-14</iyz>
+          <izz>2.7375000000000003e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name="inovation_word_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/inovation_word.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="inovation_word_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/inovation_word.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="driver_joint" type="fixed">
+      <pose relative_to="base_link">-0.45228427124745901 0 0.53500000000000203 1.5707963267949003 0 3.14159265358979</pose>
+      <parent>base_link</parent>
+      <child>driver</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="driver">
+      <pose relative_to="driver_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.36231000000000002 0.30109999999999998 -1.7641e-06 0 0 0</pose>
+        <mass>0.69303999999999999</mass>
+        <inertia>
+          <ixx>0.011426</ixx>
+          <ixy>0.0028151000000000001</ixy>
+          <ixz>-9.0842e-08</ixz>
+          <iyy>0.018134999999999998</iyy>
+          <iyz>2.2189999999999999e-08</iyz>
+          <izz>0.010401000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name="driver_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/driver.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="driver_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/driver.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
+          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_left_steering_joint" type="revolute">
+      <pose relative_to="base_link">1.11990899028511 0.41239527733499598 -0.051176930361464999 0.17453292519943298 0 0</pose>
+      <parent>base_link</parent>
+      <child>front_left_steering</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_left_steering">
+      <pose relative_to="front_left_steering_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-1.2391999999999999e-07 0.016236 -0.12249 0 0 0</pose>
+        <mass>1.0781000000000001</mass>
+        <inertia>
+          <ixx>0.01337</ixx>
+          <ixy>5.0751000000000004e-09</ixy>
+          <ixz>-1.229e-08</ixz>
+          <iyy>0.012201999999999999</iyy>
+          <iyz>0.0014478</iyz>
+          <izz>0.0019331999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_left_steering_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_steering.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_left_steering_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_steering.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.970587492 0.946075022 0.921562433 1</diffuse>
+          <ambient>0.970587492 0.946075022 0.921562433 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_left_wheel_joint" type="revolute">
+      <pose relative_to="front_left_steering">0 0.19203751183737999 -0.223861394645051 -0.17453292519943298 0 0</pose>
+      <parent>front_left_steering</parent>
+      <child>front_left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_left_wheel">
+      <pose relative_to="front_left_wheel_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-3.2512000000000001e-12 -0.047204000000000003 0 0 0 0</pose>
+        <mass>0.87472000000000005</mass>
+        <inertia>
+          <ixx>0.0015647</ixx>
+          <ixy>6.6305000000000001e-14</ixy>
+          <ixz>2.7539999999999999e-19</ixz>
+          <iyy>0.0025274999999999998</iyy>
+          <iyz>-1.8907999999999999e-20</iyz>
+          <izz>0.0015647</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_left_wheel_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_wheel.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_left_wheel_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_wheel.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.3125 0.3125 0.3125 1</diffuse>
+          <ambient>0.3125 0.3125 0.3125 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_left_rim_joint" type="fixed">
+      <pose relative_to="front_left_wheel">0 -0.01 0 -2.1668017780166 -5.5511151231257827e-17 -1.5707963267949001</pose>
+      <parent>front_left_wheel</parent>
+      <child>front_left_rim</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_left_rim">
+      <pose relative_to="front_left_rim_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0060974999999999996 6.2199999999999997e-13 -9.1726999999999999e-13 0 0 0</pose>
+        <mass>1.1956</mass>
+        <inertia>
+          <ixx>0.041392999999999999</ixx>
+          <ixy>7.7013999999999999e-13</ixy>
+          <ixz>-1.1354e-12</ixz>
+          <iyy>0.021472999999999999</iyy>
+          <iyz>-4.3367999999999999e-18</iyz>
+          <izz>0.021472999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_left_rim_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_rim.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_left_rim_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_rim.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_left_tyre_joint" type="fixed">
+      <pose relative_to="front_left_rim">0.0030000000000001098 0.010000000000502799 0 1.5707963267949003 -0.37878542435148727 -1.570796326794901</pose>
+      <parent>front_left_rim</parent>
+      <child>front_left_tyre</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_left_tyre">
+      <pose relative_to="front_left_tyre_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0092911000000000001 -0.0036971999999999999 -0.00099945999999999998 0 0 0</pose>
+        <mass>6.7244999999999999</mass>
+        <inertia>
+          <ixx>0.28659000000000001</ixx>
+          <ixy>-2.7755999999999999e-17</ixy>
+          <ixz>1.5144000000000001e-11</ixz>
+          <iyy>0.28659000000000001</iyy>
+          <iyz>2.4990999999999999e-08</iyz>
+          <izz>0.55228999999999995</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_left_tyre_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_tyre.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_left_tyre_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_left_tyre.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
+          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_right_steering_joint" type="revolute">
+      <pose relative_to="base_link">1.11990899028511 -0.41239527733499598 -0.051176930361464701 -0.17453292519943298 0 0</pose>
+      <parent>base_link</parent>
+      <child>front_right_steering</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_right_steering">
+      <pose relative_to="front_right_steering_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>1.2391999999999999e-07 -0.016236 -0.12249 0 0 0</pose>
+        <mass>1.0781000000000001</mass>
+        <inertia>
+          <ixx>0.01337</ixx>
+          <ixy>5.0752e-09</ixy>
+          <ixz>1.229e-08</ixz>
+          <iyy>0.012201999999999999</iyy>
+          <iyz>-0.0014478</iyz>
+          <izz>0.0019331999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_right_steering_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_steering.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_right_steering_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_steering.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.970587492 0.946075022 0.921562433 1</diffuse>
+          <ambient>0.970587492 0.946075022 0.921562433 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_right_wheel_joint" type="revolute">
+      <pose relative_to="front_right_steering">0 -0.19203751183737999 -0.223861394645056 -0.17453292519944399 0 3.14159265358979</pose>
+      <parent>front_right_steering</parent>
+      <child>front_right_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_right_wheel">
+      <pose relative_to="front_right_wheel_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.047204000000000003 -4.7183999999999999e-16 0 0 0</pose>
+        <mass>0.87472000000000005</mass>
+        <inertia>
+          <ixx>0.0015647</ixx>
+          <ixy>6.3611000000000003e-20</ixy>
+          <ixz>1.1021e-19</ixz>
+          <iyy>0.0025274999999999998</iyy>
+          <iyz>1.0195e-17</iyz>
+          <izz>0.0015647</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_right_wheel_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_wheel.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_right_wheel_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_wheel.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.3125 0.3125 0.3125 1</diffuse>
+          <ambient>0.3125 0.3125 0.3125 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_right_rim_joint" type="fixed">
+      <pose relative_to="front_right_wheel">0 -0.014 0 -2.1356872640667199 0 -1.5707963267949001</pose>
+      <parent>front_right_wheel</parent>
+      <child>front_right_rim</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_right_rim">
+      <pose relative_to="front_right_rim_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0020975 0 2.2204e-16 0 0 0</pose>
+        <mass>1.1956</mass>
+        <inertia>
+          <ixx>0.041392999999999999</ixx>
+          <ixy>2.2165999999999998e-18</ixy>
+          <ixz>6.3474e-19</ixz>
+          <iyy>0.021472999999999999</iyy>
+          <iyz>-7.7195000000000003e-17</iyz>
+          <izz>0.021472999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_right_rim_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_rim.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_right_rim_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_rim.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="front_right_tyre_joint" type="fixed">
+      <pose relative_to="front_right_rim">0 0 0 0 -1.5707963267948966 0</pose>
+      <parent>front_right_rim</parent>
+      <child>front_right_tyre</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="front_right_tyre">
+      <pose relative_to="front_right_tyre_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-1.1102e-16 6.8948999999999996e-07 5.4237999999999996e-07 0 0 0</pose>
+        <mass>6.7244999999999999</mass>
+        <inertia>
+          <ixx>0.28659000000000001</ixx>
+          <ixy>-5.5511e-17</ixy>
+          <ixz>1.0699e-17</ixz>
+          <iyy>0.28659000000000001</iyy>
+          <iyz>2.0423e-08</iyz>
+          <izz>0.55228999999999995</izz>
+        </inertia>
+      </inertial>
+      <collision name="front_right_tyre_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_tyre.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="front_right_tyre_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/front_right_tyre.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
+          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_left_motor_joint" type="revolute">
+      <pose relative_to="base_link">-0.65000000000001101 0.78000000000000003 0.054999999999992201 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>rear_left_motor</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="rear_left_motor">
+      <pose relative_to="rear_left_motor_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.019644999999999999 0 0 0 0</pose>
+        <mass>1.1526000000000001</mass>
+        <inertia>
+          <ixx>0.0032601000000000002</ixx>
+          <ixy>1.2715999999999999e-19</ixy>
+          <ixz>-5.4386999999999996e-19</ixz>
+          <iyy>0.0059794000000000002</iyy>
+          <iyz>-5.9775999999999999e-19</iyz>
+          <izz>0.0032601000000000002</izz>
+        </inertia>
+      </inertial>
+      <collision name="rear_left_motor_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_left_motor.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="rear_left_motor_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_left_motor.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.3125 0.3125 0.3125 1</diffuse>
+          <ambient>0.3125 0.3125 0.3125 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_left_rim_joint" type="fixed">
+      <pose relative_to="rear_left_motor">-0.0072956884947512598 0 0.0068390737229214096 3.1415926535897798 1.5385031741257711 0</pose>
+      <parent>rear_left_motor</parent>
+      <child>rear_left_rim</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="rear_left_rim">
+      <pose relative_to="rear_left_rim_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0070711000000000003 0.058220000000000001 -0.0070711000000000003 0 0 0</pose>
+        <mass>6.2430000000000003</mass>
+        <inertia>
+          <ixx>0.2913</ixx>
+          <ixy>-1.7596e-16</ixy>
+          <ixz>-5.8547000000000003e-16</ixz>
+          <iyy>0.53913999999999995</iyy>
+          <iyz>5.1286000000000003e-17</iyz>
+          <izz>0.2913</izz>
+        </inertia>
+      </inertial>
+      <collision name="rear_left_rim_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_left_rim.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="rear_left_rim_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_left_rim.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_left_tyre_joint" type="fixed">
+      <pose relative_to="rear_left_rim">0.0070710678118650096 0.078000000000000097 -0.0070710678118656202 -1.5707963267948899 0 -1.5707963267949003</pose>
+      <parent>rear_left_rim</parent>
+      <child>rear_left_tyre</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="rear_left_tyre">
+      <pose relative_to="rear_left_tyre_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.00015313999999999999 7.4582000000000006e-09 -7.7559000000000001e-10 0 0 0</pose>
+        <mass>18.329999999999998</mass>
+        <inertia>
+          <ixx>4.5465</ixx>
+          <ixy>-2.3447e-09</ixy>
+          <ixz>3.4936000000000002e-10</ixz>
+          <iyy>2.4106000000000001</iyy>
+          <iyz>-6.7414999999999999e-10</iyz>
+          <izz>2.4106000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name="rear_left_tyre_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_left_tyre.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="rear_left_tyre_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_left_tyre.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
+          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_right_motor_joint" type="revolute">
+      <pose relative_to="base_link">-0.65000000000001101 -0.77000000000000002 0.054999999999992298 0 0 3.14159265358979</pose>
+      <parent>base_link</parent>
+      <child>rear_right_motor</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="rear_right_motor">
+      <pose relative_to="rear_right_motor_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.019644999999999999 -1.3878e-17 0 0 0</pose>
+        <mass>1.1526000000000001</mass>
+        <inertia>
+          <ixx>0.0032601000000000002</ixx>
+          <ixy>-3.1037999999999998e-20</ixy>
+          <ixz>7.8168999999999999e-20</ixz>
+          <iyy>0.0059794000000000002</iyy>
+          <iyz>-1.4540999999999999e-19</iyz>
+          <izz>0.0032601000000000002</izz>
+        </inertia>
+      </inertial>
+      <collision name="rear_right_motor_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_right_motor.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="rear_right_motor_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_right_motor.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.3125 0.3125 0.3125 1</diffuse>
+          <ambient>0.3125 0.3125 0.3125 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_right_rim_joint" type="fixed">
+      <pose relative_to="rear_right_motor">0.0095706558297802297 0 -0.0028987147130915998 -3.14159265358979 0.49130562292917501 -3.14159265358979</pose>
+      <parent>rear_right_motor</parent>
+      <child>rear_right_rim</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="rear_right_rim">
+      <pose relative_to="rear_right_rim_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0070711000000000003 0.031209000000000001 -0.0070711000000000003 0 0 0</pose>
+        <mass>6.2430000000000003</mass>
+        <inertia>
+          <ixx>0.2913</ixx>
+          <ixy>7.8493999999999992e-18</ixy>
+          <ixz>-7.2858e-16</ixz>
+          <iyy>0.53913999999999995</iyy>
+          <iyz>2.6080999999999999e-16</iyz>
+          <izz>0.2913</izz>
+        </inertia>
+      </inertial>
+      <collision name="rear_right_rim_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_right_rim.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="rear_right_rim_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_right_rim.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name="rear_right_tyre_joint" type="fixed">
+      <pose relative_to="rear_right_rim">0.0070710678118650599 0.012999999999999999 -0.0070710678118659498 1.0471975511966001 0 -1.5707963267949003</pose>
+      <parent>rear_right_rim</parent>
+      <child>rear_right_tyre</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="rear_right_tyre">
+      <pose relative_to="rear_right_tyre_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.014847000000000001 7.4582000000000006e-09 -7.7559000000000001e-10 0 0 0</pose>
+        <mass>18.329999999999998</mass>
+        <inertia>
+          <ixx>4.5465</ixx>
+          <ixy>-2.3447e-09</ixy>
+          <ixz>3.4936000000000002e-10</ixz>
+          <iyy>2.4106000000000001</iyy>
+          <iyz>-6.7415999999999998e-10</iyz>
+          <izz>2.4106000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name="rear_right_tyre_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_right_tyre.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="rear_right_tyre_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://tractor_description/meshes/visual/rear_right_tyre.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
+          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <plugin
+      filename="gz-sim-ackermann-steering-system"
+      name="gz::sim::systems::AckermannSteering">
+      <use_actuator_msg>true</use_actuator_msg>
+      <left_joint>rear_left_motor_joint</left_joint>
+      <right_joint>rear_right_motor_joint</right_joint>
+      <left_steering_joint>front_left_steering_joint</left_steering_joint>
+      <right_steering_joint>front_right_steering_joint</right_steering_joint>
+      <kingpin_width>1.50</kingpin_width>
+      <steering_limit>0.52</steering_limit>
+      <wheel_base>1.770</wheel_base>
+      <wheel_separation>1.553</wheel_separation>
+      <wheel_radius>0.8</wheel_radius>
+      <min_velocity>-15.0</min_velocity>
+      <max_velocity>15.0</max_velocity>
+      <min_acceleration>-10</min_acceleration>
+      <max_acceleration>10</max_acceleration>
+      <topic>/cmd_vel</topic>
+    </plugin>
+
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+      <joint_name>front_left_wheel_joint</joint_name>
+      <joint_name>front_right_wheel_joint</joint_name>
+      <joint_name>rear_left_motor_joint</joint_name>
+      <joint_name>rear_right_motor_joint</joint_name>
+      <joint_name>front_left_steering_joint</joint_name>
+      <joint_name>front_right_steering_joint</joint_name>
+      <update_rate>20</update_rate>
+    </plugin>
+
+    <plugin filename="ignition-gazebo-odometry-publisher-system"
+      name="ignition::gazebo::systems::OdometryPublisher">
+      <odom_frame>odom</odom_frame>
+      <odom_covariance_topic>odom</odom_covariance_topic>
+      <tf_topic>tf</tf_topic>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_publish_frequency>5</odom_publish_frequency>
+    </plugin>
+
+  </model>
+</sdf>
