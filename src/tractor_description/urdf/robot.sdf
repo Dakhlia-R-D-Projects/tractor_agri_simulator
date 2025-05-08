@@ -161,15 +161,15 @@
     <link name="cameras_base">
       <pose relative_to="cameras_base_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>2.2204e-16 6.3778999999999998e-15 0.014999999999999999 0 0 0</pose>
-        <mass>0.49657000000000001</mass>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
         <inertia>
-          <ixx>0.0016394000000000001</ixx>
-          <ixy>-7.2791999999999996e-19</ixy>
-          <ixz>2.7006000000000001e-20</ixz>
-          <iyy>0.0025584000000000002</iyy>
-          <iyz>-7.9045e-19</iyz>
-          <izz>0.0041894999999999996</izz>
+          <ixx>0</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0</iyy>
+          <iyz>0</iyz>
+          <izz>0</izz>
         </inertia>
       </inertial>
       <collision name="cameras_base_collision">
@@ -196,7 +196,7 @@
       </visual>
     </link>
     <joint name="front_camera_joint" type="fixed">
-      <pose relative_to="cameras_base">0.125 0 0.0351252405208849 -1.5707963267949003 -5.5511151231257827e-17 -1.5707963267949003</pose>
+      <pose relative_to="cameras_base">0.125 0 0.0351252405208849 0 0 0</pose>
       <parent>cameras_base</parent>
       <child>front_camera</child>
       <axis>
@@ -214,15 +214,15 @@
     <link name="front_camera">
       <pose relative_to="front_camera_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>-9.1561000000000003e-07 0.00018455000000000001 -0.019517 0 0 0</pose>
+        <pose>-0.019517 9.1561000000000003e-07 -0.00018455000000000001 0 0 0</pose>
         <mass>0.16711000000000001</mass>
         <inertia>
-          <ixx>3.2466999999999999e-05</ixx>
-          <ixy>1.3857999999999999e-09</ixy>
-          <ixz>-3.2819e-09</ixz>
-          <iyy>0.00039051</iyy>
-          <iyz>6.4524000000000003e-08</iyz>
-          <izz>0.00038279999999999998</izz>
+          <ixx>0.00038279999999999998</ixx>
+          <ixy>3.2819e-09</ixy>
+          <ixz>-6.4524000000000003e-08</ixz>
+          <iyy>3.2466999999999999e-05</iyy>
+          <iyz>1.3857999999999999e-09</iyz>
+          <izz>0.00039051</izz>
         </inertia>
       </inertial>
       <collision name="front_camera_collision">
@@ -247,9 +247,75 @@
           <ambient>0.3125 0.3125 0.3125 1</ambient>
         </material>
       </visual>
+      <sensor name="front_rgbd_camera" type="rgbd_camera">
+        <camera name="front_camera">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>300.7</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10.7</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+          <optical_frame_id>front_camera_link_optical</optical_frame_id>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <gz_frame_id>front_camera</gz_frame_id>
+        <topic>front_camera</topic>
+      </sensor>
+
+      <!--used only to solve the problem of pointcloud orientation (this sensor used to pubish only the point cloud)-->
+      <sensor name="rgbd_camera1" type="rgbd_camera">
+        <camera name="front_camera">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>300.7</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10.7</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <gz_frame_id>front_camera</gz_frame_id>
+        <topic>front_camera_points</topic>
+      </sensor>
     </link>
+    <joint type="fixed" name="front_camera_optical_joint">
+      <pose relative_to='front_camera'>0 0 0 -1.5707 0 -1.5707</pose>
+      <parent>front_camera</parent>
+      <child>front_camera_link_optical</child>
+    </joint>
+    <link name="front_camera_link_optical"/>
+
     <joint name="front_camera_lens_joint" type="fixed">
-      <pose relative_to="front_camera">-0.0089685062555078607 -0.00261605881210059 -0.0417559516683845 1.5707963267949003 0 3.14159265358979</pose>
+      <pose relative_to="front_camera">-0.0417559516683845 0.0089685062555078607 0.00261605881210059 -3.14159265358979 0 1.5707963267949003</pose>
       <parent>front_camera</parent>
       <child>front_camera_lens</child>
       <axis>
@@ -302,7 +368,7 @@
       </visual>
     </link>
     <joint name="left_camera_joint" type="fixed">
-      <pose relative_to="cameras_base">-0.000448000264583026 0.100000000000006 0.0351252405208849 -1.5707963267949003 0 0</pose>
+      <pose relative_to="cameras_base">-0.000448000264583026 0.100000000000006 0.0351252405208849 0 0 1.5707963267949003</pose>
       <parent>cameras_base</parent>
       <child>left_camera</child>
       <axis>
@@ -320,15 +386,15 @@
     <link name="left_camera">
       <pose relative_to="left_camera_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>-9.1559000000000001e-07 0.00018455000000000001 -0.019517 0 0 0</pose>
+        <pose>-0.019517 9.1559000000000001e-07 -0.00018455000000000001 0 0 0</pose>
         <mass>0.16711000000000001</mass>
         <inertia>
-          <ixx>3.2466999999999999e-05</ixx>
-          <ixy>1.3857999999999999e-09</ixy>
-          <ixz>-3.2819e-09</ixz>
-          <iyy>0.00039051</iyy>
-          <iyz>6.4524000000000003e-08</iyz>
-          <izz>0.00038279999999999998</izz>
+          <ixx>0.00038279999999999998</ixx>
+          <ixy>3.2819e-09</ixy>
+          <ixz>-6.4524000000000003e-08</ixz>
+          <iyy>3.2466999999999999e-05</iyy>
+          <iyz>1.3857999999999999e-09</iyz>
+          <izz>0.00039051</izz>
         </inertia>
       </inertial>
       <collision name="left_camera_collision">
@@ -353,9 +419,75 @@
           <ambient>0.3125 0.3125 0.3125 1</ambient>
         </material>
       </visual>
+      <sensor name="left_rgbd_camera" type="rgbd_camera">
+        <camera name="left_camera">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>300.7</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10.7</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+          <optical_frame_id>left_camera_link_optical</optical_frame_id>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <gz_frame_id>left_camera</gz_frame_id>
+        <topic>left_camera</topic>
+      </sensor>
+
+      <!--used only to solve the problem of pointcloud orientation (this sensor used to pubish only the point cloud)-->
+      <sensor name="left_rgbd_camera1" type="rgbd_camera">
+        <camera name="left_camera">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>300.7</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10.7</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <gz_frame_id>left_camera</gz_frame_id>
+        <topic>left_camera_points</topic>
+      </sensor>
     </link>
+    <joint type="fixed" name="left_camera_optical_joint">
+      <pose relative_to='left_camera'>0 0 0 -1.5707 0 -1.5707</pose>
+      <parent>left_camera</parent>
+      <child>left_camera_link_optical</child>
+    </joint>
+    <link name="left_camera_link_optical"/>
+
     <joint name="left_camera_lens_joint" type="fixed">
-      <pose relative_to="left_camera">-0.0089685062555078209 -0.00261605881210059 -0.061755951668384601 -1.5707963267949003 0 3.14159265358979</pose>
+      <pose relative_to="left_camera">-0.061755951668384601 0.0089685062555078209 0.00261605881210059 0 0 1.5707963267949003</pose>
       <parent>left_camera</parent>
       <child>left_camera_lens</child>
       <axis>
@@ -408,7 +540,7 @@
       </visual>
     </link>
     <joint name="right_camera_joint" type="fixed">
-      <pose relative_to="cameras_base">-0.00044799973546072501 -0.099999999999993594 0.035125240520884803 -1.5707963267949003 0 -3.14159265358979</pose>
+      <pose relative_to="cameras_base">-0.00044799973546072501 -0.099999999999993594 0.035125240520884803 0 0 -1.5707963267949003</pose>
       <parent>cameras_base</parent>
       <child>right_camera</child>
       <axis>
@@ -426,15 +558,15 @@
     <link name="right_camera">
       <pose relative_to="right_camera_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>-9.1559000000000001e-07 0.00018455000000000001 -0.019517 0 0 0</pose>
+        <pose>-0.019517 9.1559000000000001e-07 -0.00018455000000000001 0 0 0</pose>
         <mass>0.16711000000000001</mass>
         <inertia>
-          <ixx>3.2466999999999999e-05</ixx>
-          <ixy>1.3857999999999999e-09</ixy>
-          <ixz>-3.2819e-09</ixz>
-          <iyy>0.00039051</iyy>
-          <iyz>6.4524000000000003e-08</iyz>
-          <izz>0.00038279999999999998</izz>
+          <ixx>0.00038279999999999998</ixx>
+          <ixy>3.2819e-09</ixy>
+          <ixz>-6.4524000000000003e-08</ixz>
+          <iyy>3.2466999999999999e-05</iyy>
+          <iyz>1.3857999999999999e-09</iyz>
+          <izz>0.00039051</izz>
         </inertia>
       </inertial>
       <collision name="right_camera_collision">
@@ -459,9 +591,74 @@
           <ambient>0.3125 0.3125 0.3125 1</ambient>
         </material>
       </visual>
+      <sensor name="right_rgbd_camera" type="rgbd_camera">
+        <camera name="right_camera">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>300.7</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10.7</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+          <optical_frame_id>right_camera_link_optical</optical_frame_id>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <gz_frame_id>right_camera</gz_frame_id>
+        <topic>right_camera</topic>
+      </sensor>
+
+      <!--used only to solve the problem of pointcloud orientation (this sensor used to pubish only the point cloud)-->
+      <sensor name="right_rgbd_camera1" type="rgbd_camera">
+        <camera name="left_camera">
+          <horizontal_fov>1.50098</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.1</near>
+            <far>300.7</far>
+          </clip>
+          <depth_camera>
+            <clip>
+              <near>0.1</near>
+              <far>10.7</far>
+            </clip>
+          </depth_camera>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <gz_frame_id>right_camera</gz_frame_id>
+        <topic>right_camera_points</topic>
+      </sensor>
     </link>
+    <joint type="fixed" name="right_camera_optical_joint">
+      <pose relative_to='right_camera'>0 0 0 -1.5707 0 -1.5707</pose>
+      <parent>right_camera</parent>
+      <child>right_camera_link_optical</child>
+    </joint>
+    <link name="right_camera_link_optical"/>
     <joint name="right_camera_lens_joint" type="fixed">
-      <pose relative_to="right_camera">-0.0089685062555078209 -0.0026160588121004699 -0.061755951668384601 -1.5707963267949003 0 -3.14159265358979</pose>
+      <pose relative_to="right_camera">-0.061755951668384601 0.0089685062555078209 0.0026160588121004699 0 0 1.5707963267949003</pose>
       <parent>right_camera</parent>
       <child>right_camera_lens</child>
       <axis>
@@ -536,7 +733,7 @@
         <mass>0.0098297000000000002</mass>
         <inertia>
           <ixx>1.0288e-06</ixx>
-          <ixy>-5.9780000000000003e-22</ixy>
+          <ixy>-5.7194999999999999e-22</ixy>
           <ixz>-1.2358e-22</ixz>
           <iyy>3.4651000000000001e-06</iyy>
           <iyz>1.9947000000000001e-23</iyz>
@@ -726,7 +923,7 @@
       </visual>
     </link>
     <joint name="driver_joint" type="fixed">
-      <pose relative_to="base_link">-0.45228427124745901 0 0.53500000000000203 1.5707963267949003 0 3.14159265358979</pose>
+      <pose relative_to="base_link">-0.45228000000000002 0 0.53500000000000003 1.5708 -4.2351647362715017e-22 -3.1415853071795872</pose>
       <parent>base_link</parent>
       <child>driver</child>
       <axis>
@@ -779,7 +976,7 @@
       </visual>
     </link>
     <joint name="front_left_steering_joint" type="revolute">
-      <pose relative_to="base_link">1.11990899028511 0.41239527733499598 -0.051176930361464999 0.17453292519943298 0 0</pose>
+      <pose relative_to="base_link">1.1198999999999999 0.41239999999999999 -0.051177 0.17452999999999999 0 0</pose>
       <parent>base_link</parent>
       <child>front_left_steering</child>
       <axis>
@@ -850,14 +1047,14 @@
     <link name="front_left_wheel">
       <pose relative_to="front_left_wheel_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>-3.2510000000000002e-12 -0.047204000000000003 0 0 0 0</pose>
+        <pose>-3.2512000000000001e-12 -0.047204000000000003 0 0 0 0</pose>
         <mass>0.87472000000000005</mass>
         <inertia>
           <ixx>0.0015647</ixx>
           <ixy>6.6305000000000001e-14</ixy>
-          <ixz>3.9452999999999999e-19</ixz>
+          <ixz>3.9432e-19</ixz>
           <iyy>0.0025274999999999998</iyy>
-          <iyz>-2.5660999999999999e-21</iyz>
+          <iyz>-2.6345000000000001e-21</iyz>
           <izz>0.0015647</izz>
         </inertia>
       </inertial>
@@ -903,7 +1100,7 @@
     <link name="front_left_rim">
       <pose relative_to="front_left_rim_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>0.0060974999999999996 6.2239000000000004e-13 -9.1726999999999999e-13 0 0 0</pose>
+        <pose>0.0060974999999999996 6.2233999999999995e-13 -9.1748999999999996e-13 0 0 0</pose>
         <mass>1.1956</mass>
         <inertia>
           <ixx>0.041392999999999999</ixx>
@@ -960,7 +1157,7 @@
         <mass>6.7244999999999999</mass>
         <inertia>
           <ixx>0.28659000000000001</ixx>
-          <ixy>2.7755999999999999e-17</ixy>
+          <ixy>4.1633e-17</ixy>
           <ixz>1.5144000000000001e-11</ixz>
           <iyy>0.28659000000000001</iyy>
           <iyz>2.4990999999999999e-08</iyz>
@@ -985,13 +1182,13 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
-          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
         </material>
       </visual>
     </link>
     <joint name="front_right_steering_joint" type="revolute">
-      <pose relative_to="base_link">1.11990899028511 -0.41239527733499598 -0.051176930361464701 -0.17453292519943298 0 0</pose>
+      <pose relative_to="base_link">1.1198999999999999 -0.41239999999999999 -0.051177 -0.17452999999999999 0 0</pose>
       <parent>base_link</parent>
       <child>front_right_steering</child>
       <axis>
@@ -1066,10 +1263,10 @@
         <mass>0.87472000000000005</mass>
         <inertia>
           <ixx>0.0015647</ixx>
-          <ixy>6.4695000000000003e-20</ixy>
-          <ixz>2.8328999999999999e-20</ixz>
+          <ixy>6.4438000000000005e-20</ixy>
+          <ixz>2.851e-20</ixz>
           <iyy>0.0025274999999999998</iyy>
-          <iyz>1.0198999999999999e-17</iyz>
+          <iyz>1.0198000000000001e-17</iyz>
           <izz>0.0015647</izz>
         </inertia>
       </inertial>
@@ -1119,10 +1316,10 @@
         <mass>1.1956</mass>
         <inertia>
           <ixx>0.041392999999999999</ixx>
-          <ixy>2.4246000000000002e-18</ixy>
+          <ixy>2.4234000000000001e-18</ixy>
           <ixz>1.3578e-18</ixz>
           <iyy>0.021472999999999999</iyy>
-          <iyz>-6.8521999999999999e-17</iyz>
+          <iyz>-5.2042000000000001e-17</iyz>
           <izz>0.021472999999999999</izz>
         </inertia>
       </inertial>
@@ -1172,7 +1369,7 @@
         <mass>6.7244999999999999</mass>
         <inertia>
           <ixx>0.28659000000000001</ixx>
-          <ixy>-4.1633e-17</ixy>
+          <ixy>2.7755999999999999e-17</ixy>
           <ixz>3.2113e-18</ixz>
           <iyy>0.28659000000000001</iyy>
           <iyz>2.0423e-08</iyz>
@@ -1197,13 +1394,13 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
-          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
         </material>
       </visual>
     </link>
     <joint name="rear_left_motor_joint" type="revolute">
-      <pose relative_to="base_link">-0.65000000000001101 0.78000000000000003 0.054999999999992201 0 0 0</pose>
+      <pose relative_to="base_link">-0.65000000000000002 0.78000000000000003 0.055 0 0 0</pose>
       <parent>base_link</parent>
       <child>rear_left_motor</child>
       <axis>
@@ -1225,10 +1422,10 @@
         <mass>1.1526000000000001</mass>
         <inertia>
           <ixx>0.0032601000000000002</ixx>
-          <ixy>6.5151999999999995e-20</ixy>
-          <ixz>-7.5415999999999998e-19</ixz>
+          <ixy>8.0900999999999995e-20</ixy>
+          <ixz>-7.5480000000000002e-19</ixz>
           <iyy>0.0059794000000000002</iyy>
-          <iyz>-6.6731999999999997e-19</iyz>
+          <iyz>-6.6988999999999997e-19</iyz>
           <izz>0.0032601000000000002</izz>
         </inertia>
       </inertial>
@@ -1278,10 +1475,10 @@
         <mass>6.2430000000000003</mass>
         <inertia>
           <ixx>0.2913</ixx>
-          <ixy>-2.0306999999999999e-16</ixy>
-          <ixz>-3.4693999999999997e-17</ixz>
+          <ixy>-2.0239e-16</ixy>
+          <ixz>-5.0307000000000002e-17</ixz>
           <iyy>0.53913999999999995</iyy>
-          <iyz>4.2737000000000003e-17</iyz>
+          <iyz>4.3358e-17</iyz>
           <izz>0.2913</izz>
         </inertia>
       </inertial>
@@ -1332,7 +1529,7 @@
         <inertia>
           <ixx>4.5465</ixx>
           <ixy>-2.3447e-09</ixy>
-          <ixz>3.4936000000000002e-10</ixz>
+          <ixz>3.4937e-10</ixz>
           <iyy>2.4106000000000001</iyy>
           <iyz>-6.7414999999999999e-10</iyz>
           <izz>2.4106000000000001</izz>
@@ -1356,13 +1553,13 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
-          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
         </material>
       </visual>
     </link>
     <joint name="rear_right_motor_joint" type="revolute">
-      <pose relative_to="base_link">-0.65000000000001101 -0.77000000000000002 0.054999999999992298 0 0 3.14159265358979</pose>
+      <pose relative_to="base_link">-0.65000000000000002 -0.77000000000000002 0.055 0 0 -3.1415853071795872</pose>
       <parent>base_link</parent>
       <child>rear_right_motor</child>
       <axis>
@@ -1384,10 +1581,10 @@
         <mass>1.1526000000000001</mass>
         <inertia>
           <ixx>0.0032601000000000002</ixx>
-          <ixy>-6.3634999999999999e-20</ixy>
-          <ixz>3.9208000000000001e-19</ixz>
+          <ixy>-6.6683000000000005e-20</ixy>
+          <ixz>3.8959999999999998e-19</ixz>
           <iyy>0.0059794000000000002</iyy>
-          <iyz>-2.4972000000000002e-19</iyz>
+          <iyz>-2.4996e-19</iyz>
           <izz>0.0032601000000000002</izz>
         </inertia>
       </inertial>
@@ -1437,10 +1634,10 @@
         <mass>6.2430000000000003</mass>
         <inertia>
           <ixx>0.2913</ixx>
-          <ixy>1.9052e-17</ixy>
-          <ixz>-7.2164000000000003e-16</ixz>
+          <ixy>1.9352e-17</ixy>
+          <ixz>-5.5510999999999996e-16</ixz>
           <iyy>0.53913999999999995</iyy>
-          <iyz>2.3553999999999998e-16</iyz>
+          <iyz>2.3638999999999998e-16</iyz>
           <izz>0.2913</izz>
         </inertia>
       </inertial>
@@ -1515,8 +1712,8 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0.372550011 0.372550011 0.372550011 1</diffuse>
-          <ambient>0.372550011 0.372550011 0.372550011 1</ambient>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
         </material>
       </visual>
     </link>
