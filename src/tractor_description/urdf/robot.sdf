@@ -249,19 +249,19 @@
       </visual>
       <sensor name="front_rgbd_camera" type="rgbd_camera">
         <camera name="front_camera">
-          <horizontal_fov>1.50098</horizontal_fov>
+          <horizontal_fov>1.91986</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
           </image>
           <clip>
-            <near>0.1</near>
+            <near>0.001</near>
             <far>300.7</far>
           </clip>
           <depth_camera>
             <clip>
-              <near>0.1</near>
-              <far>10.7</far>
+              <near>0.3</near>
+              <far>20.0</far>
             </clip>
           </depth_camera>
           <noise>
@@ -280,19 +280,19 @@
       <!--used only to solve the problem of pointcloud orientation (this sensor used to pubish only the point cloud)-->
       <sensor name="rgbd_camera1" type="rgbd_camera">
         <camera name="front_camera">
-          <horizontal_fov>1.50098</horizontal_fov>
+          <horizontal_fov>1.91986</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
           </image>
           <clip>
-            <near>0.1</near>
+            <near>0.001</near>
             <far>300.7</far>
           </clip>
           <depth_camera>
             <clip>
-              <near>0.1</near>
-              <far>10.7</far>
+              <near>0.3</near>
+              <far>20.0</far>
             </clip>
           </depth_camera>
           <noise>
@@ -421,19 +421,19 @@
       </visual>
       <sensor name="left_rgbd_camera" type="rgbd_camera">
         <camera name="left_camera">
-          <horizontal_fov>1.50098</horizontal_fov>
+          <horizontal_fov>1.91986</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
           </image>
           <clip>
-            <near>0.1</near>
+            <near>0.001</near>
             <far>300.7</far>
           </clip>
           <depth_camera>
             <clip>
-              <near>0.1</near>
-              <far>10.7</far>
+              <near>0.3</near>
+              <far>20.0</far>
             </clip>
           </depth_camera>
           <noise>
@@ -452,19 +452,19 @@
       <!--used only to solve the problem of pointcloud orientation (this sensor used to pubish only the point cloud)-->
       <sensor name="left_rgbd_camera1" type="rgbd_camera">
         <camera name="left_camera">
-          <horizontal_fov>1.50098</horizontal_fov>
+          <horizontal_fov>1.91986</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
           </image>
           <clip>
-            <near>0.1</near>
+            <near>0.001</near>
             <far>300.7</far>
           </clip>
           <depth_camera>
             <clip>
-              <near>0.1</near>
-              <far>10.7</far>
+              <near>0.3</near>
+              <far>20.0</far>
             </clip>
           </depth_camera>
           <noise>
@@ -593,19 +593,19 @@
       </visual>
       <sensor name="right_rgbd_camera" type="rgbd_camera">
         <camera name="right_camera">
-          <horizontal_fov>1.50098</horizontal_fov>
+          <horizontal_fov>1.91986</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
           </image>
           <clip>
-            <near>0.1</near>
+            <near>0.001</near>
             <far>300.7</far>
           </clip>
           <depth_camera>
             <clip>
-              <near>0.1</near>
-              <far>10.7</far>
+              <near>0.3</near>
+              <far>20.0</far>
             </clip>
           </depth_camera>
           <noise>
@@ -624,19 +624,19 @@
       <!--used only to solve the problem of pointcloud orientation (this sensor used to pubish only the point cloud)-->
       <sensor name="right_rgbd_camera1" type="rgbd_camera">
         <camera name="left_camera">
-          <horizontal_fov>1.50098</horizontal_fov>
+          <horizontal_fov>1.91986</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
           </image>
           <clip>
-            <near>0.1</near>
-            <far>300.7</far>
+            <near>0.001</near>
+            <far>300.0</far>
           </clip>
           <depth_camera>
             <clip>
-              <near>0.1</near>
-              <far>10.7</far>
+              <near>0.3</near>
+              <far>20.0</far>
             </clip>
           </depth_camera>
           <noise>
