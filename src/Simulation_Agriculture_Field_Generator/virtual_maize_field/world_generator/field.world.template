@@ -4,10 +4,10 @@
   <world name="virtual_maize_field">
 
     <!-- Change max step size to increase the simulation speed but decrease the accuracy. -->
-    <physics type="ode">
-      <max_step_size>0.004</max_step_size>
+    <physics type="dart">
+      <max_step_size>0.01</max_step_size>
       <real_time_factor>1.0</real_time_factor>
-      <real_time_update_rate>250</real_time_update_rate>
+      <real_time_update_rate>2000</real_time_update_rate>
     </physics>
     <render_engine>ogre2</render_engine>
     <!-- <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'/> -->

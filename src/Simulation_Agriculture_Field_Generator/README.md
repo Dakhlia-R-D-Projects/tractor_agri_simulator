@@ -48,7 +48,7 @@ This package includes a script (`virtual_maize_field/generate_world.py`) that ca
 
 You can call the script using
 ```bash
-ros2 run virtual_maize_field generate_world
+ros2 run virtual_maize_field generate_world --crop_type natroon_palm --plant_spacing_min 7.0 --plant_spacing_max 7.1 --row_width 10.0 --row_segments straight --ground_resolution 0.5 --hole_size 0 --hole_prob 0 --ground_ditch_depth 0.0001 --ground_elevation_max 0.0001 --rows_count 3 --ground_headland 10
 ```
 The resulting file will be placed in `$ROS_HOME/virtual_maize_field/generated.world`. 
 
@@ -96,13 +96,8 @@ You can use this script by one of the defined config files or specifying the par
                       [--location_markers LOCATION_MARKERS]
                       [--load_from_file LOAD_FROM_FILE] [--seed SEED]
                       [--show_map]
-                      [{fre21_task_2_mini,fre21_task_2_fast,fre21_task_1_mini,fre22_task_mapping_mini,fre22_task_navigation,fre21_task_3_fast,fre22_task_mapping,fre21_task_4_fast,fre21_task_2,fre21_task_3_mini,fre22_task_mapping_fast,fre21_task_1,fre21_task_3,fre22_task_navigation_fast,fre21_task_1_fast,fre21_task_4,fre22_task_navigation_mini,fre21_task_4_mini}]
-
-Generate a virtual maize field world for Gazebo.
-
-positional arguments:
-  {fre21_task_2_mini,fre21_task_2_fast,fre21_task_1_mini,fre22_task_mapping_mini,fre22_task_navigation,fre21_task_3_fast,fre22_task_mapping,fre21_task_4_fast,fre21_task_2,fre21_task_3_mini,fre22_task_mapping_fast,fre21_task_1,fre21_task_3,fre22_task_navigation_fast,fre21_task_1_fast,fre21_task_4,fre22_task_navigation_mini,fre21_task_4_mini}
-                        Config file name in the config folder
+                      
+Generate a virtual maize field world for Gazebo Harmonic.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -188,51 +183,9 @@ optional arguments:
   ```
 </details>
 
-## Sample Worlds
-In the [config folder](config/), config files to generate sample worlds are located. The parameters are chosen to match [the task description](https://www.fieldrobot.com/event/index.php/contest/)
-
-Worlds for the Field Robot Event 2022:
-| Name | Description |
-|:---- |:----------- |
-| *fre22_task_navigation* | Task navigation, curved rows that get more difficult (eg. have more and larger holes) to the left |
-| *fre22_task_mapping* | Task mapping, field with random holes, bottles and weeds spread throughout the field. The cans, bottles and weeds have no collision box and are static. <br /><sub>This world needs dandelion models which were only distributed among competitors of the Field Robot Event 2022. They are not uploaded to Github because they cannot be open-sourced. If you don't have access to these models, check out the `fre21_task_3` worlds.</sub>|
-
-Worlds for the Field Robot Event 2021:
-| Name | Description |
-|:---- |:----------- |
-| *fre21_task_1* | Task 1, curved rows without holes |
-| *fre21_task_2* | Task 2, straight rows with holes |
-| *fre21_task_3* | Task 3, similar crop rows as in task_2 but with cans, bottles and weeds spread throughout the field. The cans, bottles and weeds have no collision box and are static. |
-| *fre21_task_4* | Task 4, similar crop rows as in task_2 but with cans, bottles and weeds spread throughout the field. The cans, bottles and weeds have a collision box and can be picked up. |
-
-You can use these config files when generating worlds, e.g.:
-```commandline
-ros2 run virtual_maize_field generate_world fre22_task_navigation_mini
-```
-
 ## Launching and using generated worlds
 The launch file to launch the worlds is called `simulation.launch`. You can launch the launch file by running `ros2 launch virtual_maize_field simulation.launch.py`. By default the launch file will launch `generated_world.world`. You can launch any world by using the `world_name` arg. e.g. `ros2 launch virtual_maize_field simulation.launch.py world_name:=simple_row_level_1.world`. The generated world will be saved in `$ROS_HOME/virtual_maize_field` (usually, this will be `~/.ros/virtual_maize_field`).
 
-To add your own robot in the world, use the generated `robot_spawner.launch.py`. This launches your robot at the correct position in the generated world. Your launch file to launch your robot should look like (replace `<<robot_name>>` with your robot name):
-
-```python
-from __future__ import annotations
-
-from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-
-from virtual_maize_field import get_spawner_launch_file
-
-
-def generate_launch_description() -> LaunchDescription:
-    robot_spawner_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([get_spawner_launch_file()]),
-        launch_arguments={"robot_name": "<<robot_name>>"}.items(),
-    )
-
-    return LaunchDescription([robot_spawner_launch])
-```
 
 Use the function `get_driving_pattern_file()` to get the path of the generated driving pattern and `get_markers_file` to get the path of the generated markers:
 
@@ -276,6 +229,8 @@ Virtual Maize Field is copyright (C) 2021 *Farm Technology Group of Wageningen U
 | [Nettle](models/nettle/model.config) | `models/nettle/` | 2019 *LadyIReyna* | [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/) |
 | [Retro Pepsi Can](models/retro_pepsi_can/model.config) | `models/retro_pepsi_can/` | 2018 *FWTeastwood* | [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) |
 | [Unknown Weed](models/unknown_weed/model.config) | `models/unknown_weed/` | 2016 *aaron_nerlich* | [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) |
+| [natroon_palm](models/natroon_palm/model.config) | `models/natroon_palm/` | 2025 *Dakahlia group* | [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) |
+
 
 ### Textures
 | Name | Path | Copyright | License |

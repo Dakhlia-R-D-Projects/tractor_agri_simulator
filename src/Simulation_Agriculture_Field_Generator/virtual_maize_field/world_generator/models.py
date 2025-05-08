@@ -135,6 +135,7 @@ CROP_MODELS = {
     "orange_tree": GazeboModel(model_name="orange_tree"),
     "orange_tree_natroon": GazeboModel(model_name="orange_tree_natroon"),
     "natroon_palm": GazeboModel(model_name="natroon_palm"),
+    "natroon_lemon_tree": GazeboModel(model_name="natroon_lemon_tree"),
 }
 
 WEED_MODELS = {

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-  <model name="orange_tree">
+  <model name="natroon_palm">
     <static>true</static>
     <link name="link">
       <collision name="collision">
