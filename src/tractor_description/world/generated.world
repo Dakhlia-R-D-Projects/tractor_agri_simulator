@@ -4,10 +4,10 @@
   <world name="virtual_maize_field">
 
     <!-- Change max step size to increase the simulation speed but decrease the accuracy. -->
-    <physics type="ode">
-      <max_step_size>0.004</max_step_size>
+    <physics type="dart">
+      <max_step_size>0.01</max_step_size>
       <real_time_factor>1.0</real_time_factor>
-      <real_time_update_rate>250</real_time_update_rate>
+      <real_time_update_rate>2000</real_time_update_rate>
     </physics>
     <render_engine>ogre2</render_engine>
     <!-- <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'/> -->
@@ -94,7 +94,7 @@
     <light type="directional" name="sun">
       <!-- Disable shadows to avoid flickering on non-gpu pc, see: 
            https://github.com/gazebosim/gz-sim/issues/2267 -->
-      <cast_shadows>true</cast_shadows>
+      <cast_shadows>false</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
       <diffuse>0.8 0.8 0.8 1</diffuse>
       <specular>0.2 0.2 0.2 1</specular>

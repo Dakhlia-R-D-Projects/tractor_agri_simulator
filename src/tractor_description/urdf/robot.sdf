@@ -1186,6 +1186,7 @@
       filename="gz-sim-ackermann-steering-system"
       name="gz::sim::systems::AckermannSteering">
       <use_actuator_msg>true</use_actuator_msg>
+      <steer_p_gain>4.0</steer_p_gain>
       <left_joint>rear_left_motor_joint</left_joint>
       <right_joint>rear_right_motor_joint</right_joint>
       <left_steering_joint>front_left_steering_joint</left_steering_joint>
@@ -1195,10 +1196,10 @@
       <wheel_base>1.770</wheel_base>
       <wheel_separation>1.553</wheel_separation>
       <wheel_radius>0.8</wheel_radius>
-      <min_velocity>-15.0</min_velocity>
-      <max_velocity>15.0</max_velocity>
-      <min_acceleration>-10</min_acceleration>
-      <max_acceleration>10</max_acceleration>
+      <min_velocity>-4.16667</min_velocity>
+      <max_velocity>4.16667</max_velocity>
+      <min_acceleration>-3</min_acceleration>
+      <max_acceleration>3</max_acceleration>
       <topic>/cmd_vel</topic>
     </plugin>
 
