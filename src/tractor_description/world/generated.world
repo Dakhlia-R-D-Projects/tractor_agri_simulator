@@ -2,7 +2,6 @@
 <!-- Seed: 4020 -->
 <sdf version="1.9">
   <world name="virtual_maize_field">
-
     <!-- Change max step size to increase the simulation speed but decrease the accuracy. -->
     <physics type="dart">
       <max_step_size>0.008</max_step_size>
@@ -17,6 +16,7 @@
     <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
     <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/>
     <plugin name='gz::sim::systems::AirPressure' filename='gz-sim-air-pressure-system'/>
+    <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"/>
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
@@ -115,6 +115,14 @@
       </sky>
       <grid>false</grid>
     </scene>
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>27.9162477</latitude_deg>
+      <longitude_deg>30.5634376</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
 
     <model name="heightmap">
       <static>true</static>
