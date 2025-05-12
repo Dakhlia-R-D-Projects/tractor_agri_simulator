@@ -49,6 +49,19 @@
         <gz_frame_id>navsat_link</gz_frame_id>
       </sensor>
     </link>
+    <joint type="fixed" name="imu_joint">
+      <pose relative_to='base_link'>0 0 0 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>imu_link</child>
+    </joint>
+    <link name="imu_link">
+      <sensor name="imu_sensor" type="imu">
+        <always_on>1</always_on>
+        <update_rate>50</update_rate>
+        <visualize>true</visualize>
+        <topic>imu</topic>
+      </sensor>
+    </link>
     <joint name="body_joint" type="fixed">
       <pose relative_to="base_link">0.11290899028510799 0 0.43643875621613498 1.5707963267949003 5.5511151231257827e-17 -1.5707963267949003</pose>
       <parent>base_link</parent>
