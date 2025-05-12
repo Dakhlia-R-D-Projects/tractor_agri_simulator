@@ -28,6 +28,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'remove_drift = tractor_description.remove_drift:main',
         ],
     },
 )

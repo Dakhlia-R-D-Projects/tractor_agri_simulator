@@ -26,7 +26,41 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration('use_sim_time')
     localization = LaunchConfiguration('localization')
-
+    ground_truth = LaunchConfiguration('ground_truth')
+    odometry_params = {
+        "rgbd_cameras": 1,
+        "use_sim_time": use_sim_time,
+        "frame_id": "base_link",
+        "odom_frame_id": "vodom",
+        "guess_frame_id": "odom",
+        "subscribe_rgbd": False,
+        "subscribe_rgb": True,
+        "subscribe_depth": True,
+        "subscribe_scan": False,
+        'RGBD/NeighborLinkRefining': 'true',    # Do odometry correction with consecutive laser scans
+        'RGBD/ProximityBySpace':     'true',    # Local loop closure detection (using estimated position) with locations in WM
+        'RGBD/ProximityByTime':      'false',   # Local loop closure detection with locations in STM
+        'RGBD/ProximityPathMaxNeighbors': '10', # Do also proximity detection by space by merging close scans together.
+        'Reg/Strategy':              '2',       # 0=Visual, 1=ICP, 2=Visual+ICP
+        'Vis/MinInliers':            '12',      # 3D visual words minimum inliers to accept loop closure
+        'RGBD/OptimizeFromGraphEnd': 'true',   # Optimize graph from initial node so /map -> /odom transform will be generated
+        'RGBD/OptimizeMaxError':     '4',       # Reject any loop closure causing large errors (>3x link's covariance) in the map
+        'Reg/Force3DoF':             'true',    # 2D SLAM
+        'Grid/FromDepth':            'true',   # Create 2D occupancy grid from laser scan
+        'Mem/STMSize':               '30',      # increased to 30 to avoid adding too many loop closures on just seen locations
+        'RGBD/LocalRadius':          '2',       # limit length of proximity detections
+        'Icp/CorrespondenceRatio':   '0.2',     # minimum scan overlap to accept loop closure
+        'Icp/PM':                    'false',
+        'Icp/PointToPlane':          'true',    # Use point-to-plane ICP
+        'Icp/MaxCorrespondenceDistance': '0.15',
+        'Icp/VoxelSize':             '0.2',
+        "Rtabmap/DetectionRate": "5", # 5Hz
+        "Grid/NoiseFilteringMinNeighbors": "5", # 2D occupancy grid noise filtering
+        "Grid/RangeMax": "20.0", # 2D occupancy grid max range
+        "GridGlobal/FootprintRadius": "0.55", # 2D occupancy grid robot footprint radius
+        "GTSAM/Optimizer":'1', # 0=Levenberg 1=GaussNewton 2=Dogleg
+        "GTSAM/Incremental":"true",
+    }
     parameters={
           'rgbd_cameras':3,
           'frame_id':'base_link',
@@ -98,6 +132,18 @@ def generate_launch_description():
             'localization', default_value='true',
             description='Launch in localization mode.'),
 
+        DeclareLaunchArgument(
+            'ground_truth', default_value='false',
+            description='remove drift if true'),
+
+        Node(
+            condition=IfCondition(ground_truth),
+            package="tractor_description",
+            executable="remove_drift",
+            name="remove_drift",
+            output="screen",
+        ),
+
         # Nodes to launch
         Node(
             package='rtabmap_sync', executable='rgbd_sync',name="front_rgbd", output='screen',
@@ -121,6 +167,12 @@ def generate_launch_description():
             parameters=[parameters],
             remappings=remappings_slam,
             arguments=['-d']),
+
+        Node(
+            package='rtabmap_odom', executable='rgbd_odometry', output='screen',
+            parameters=[odometry_params, {'odom_frame_id': 'odom'}],
+            remappings=remappings1,
+            arguments=["--ros-args", "--log-level", 'info']),
             
         # Localization mode:
         Node(

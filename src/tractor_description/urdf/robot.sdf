@@ -1649,7 +1649,6 @@
     <plugin
       filename="gz-sim-ackermann-steering-system"
       name="gz::sim::systems::AckermannSteering">
-      <use_actuator_msg>true</use_actuator_msg>
       <steer_p_gain>4.0</steer_p_gain>
       <left_joint>rear_left_motor_joint</left_joint>
       <right_joint>rear_right_motor_joint</right_joint>
@@ -1679,11 +1678,10 @@
 
     <plugin filename="gz-sim-odometry-publisher-system"
       name="gz::sim::systems::OdometryPublisher">
-      <odom_frame>odom</odom_frame>
-      <odom_covariance_topic>odom</odom_covariance_topic>
-      <tf_topic>tf</tf_topic>
+      <odom_frame>gt_odom</odom_frame>
+      <odom_covariance_topic>gt_odom</odom_covariance_topic>
       <robot_base_frame>base_link</robot_base_frame>
-      <odom_publish_frequency>20</odom_publish_frequency>
+      <odom_publish_frequency>30</odom_publish_frequency>
     </plugin>
 
   </model>
