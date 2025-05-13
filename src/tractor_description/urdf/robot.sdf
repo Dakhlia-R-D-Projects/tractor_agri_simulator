@@ -279,8 +279,8 @@
         <camera name="front_camera">
           <horizontal_fov>1.91986</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>2560</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.001</near>
@@ -423,8 +423,8 @@
         <camera name="left_camera">
           <horizontal_fov>1.91986</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>2560</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.001</near>
@@ -567,8 +567,8 @@
         <camera name="right_camera">
           <horizontal_fov>1.91986</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>2560</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.001</near>
