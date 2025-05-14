@@ -4,6 +4,23 @@
   <img src="https://github.com/user-attachments/assets/eb0caf3b-e7ff-4000-8de7-06225c68402a" />   
 </p>
 
+## Tractor
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9d71b82c-0fd6-4a69-b8bf-e97d2d11998e" width="350"/>
+  <img src=https://github.com/user-attachments/assets/82daedc4-7f81-4569-856f-4556f4c75d21 width="450"/>
+</p>
+
+### Tractor Specification
+|**Specification**  |**Value**   |
+|-------------------|------------|
+| Wheel base        |1800 mm     |
+| Rear Wheel track  |1545 mm     |
+| Rear wheel radius |500  mm     |
+| Front wheel radius|326  mm     |
+| King pin width    |            |
+| Max steering angle|            |
+| Max speed         |            |
+
 ## Overview
 
 Tractor Agriculture Simulator is a ROS 2-based simulation environment for agricultural robotics research and development forsensor fusion, SLAM, navigation, and virtual field generation to enable the testing and development of autonomous agricultural robots in realistic scenarios.
