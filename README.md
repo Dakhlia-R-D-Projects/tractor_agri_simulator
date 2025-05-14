@@ -11,27 +11,31 @@
 </p>
 
 ### Tractor Specification
-
+<div align="center">
+  
 |**Specification**  |**Value**   |
 |-------------------|------------|
 | Wheel base        |1800 mm     |
 | Rear Wheel track  |1545 mm     |
-| front Wheel track |1280 mm     |
+| Front Wheel track |1280 mm     |
 | Rear wheel radius |500  mm     |
 | Front wheel radius|326  mm     |
 | King pin width    |1500 mm     |
 | Max steering angle|30°         |
 | Max speed         |15 km/h     |
+</div>
 
 ## Overview
 
 Tractor Agriculture Simulator is a ROS 2-based simulation environment for agricultural robotics research and development forsensor fusion, SLAM, navigation, and virtual field generation to enable the testing and development of autonomous agricultural robots in realistic scenarios.
 ## Branches
+<div align="center">
+  
 |**Branch**         |**Description**                                      |
 |-------------------|-----------------------------------------------------|
 | main              | Used to test module like control and perception     |
 | localization_test_bench | used to test different localization and odometry techniques with groundtruth odometery |
-
+</div>
 
 ## Main Features
 - Simulate tractors in virtual Agriculture fields with different crops type(Palm, Orange tree, Lemon tree).
@@ -111,6 +115,8 @@ ros2 launch teleop_twist_joy teleop-launch.py
 | LIDAR            | rplidar s2| 2D LIDAR       | Laser scanner                     |Fused with visual odometry to give better reading  |
 
 ### Main ROS Topics
+<div align="center">
+  
 |**Topic Name**             | **Message Type**              | **Description**                     |
 |---------------------------|-------------------------------|-------------------------------------|
 | /imu                      | sensor_msgs/msg/Imu           | IMU data                            |
@@ -129,6 +135,8 @@ ros2 launch teleop_twist_joy teleop-launch.py
 | /tf                       | tf2_msgs/msg/TFMessage        | Transforms                          |
 | /odom                     | nav_msgs/msg/Odometry         | Ground truth odometry (sim) with spawn shift     |
 | /clock                    | rosgraph_msgs/msg/Clock       | Simulation clock                   |
+
+</div>
 
 > Note: Topic names may be remapped in launch/config files. See `tractor_description/config/gz_bridge.yaml` and launch files for details.
 
