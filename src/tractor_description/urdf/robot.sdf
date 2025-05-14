@@ -277,8 +277,8 @@
         <camera name="front_camera">
           <horizontal_fov>1.91986</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>2560</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.001</near>
@@ -311,6 +311,43 @@
       <child>front_camera_link_optical</child>
     </joint>
     <link name="front_camera_link_optical"/>
+
+    <joint type="fixed" name="lidar_joint">
+      <pose relative_to='front_camera'>0 0 0.1 0 0 0</pose>
+      <parent>front_camera</parent>
+      <child>lidar_link</child>
+    </joint>
+    <link name="lidar_link">
+      <sensor name="Lidar" type="gpu_lidar">
+        <gz_frame_id>lidar_link</gz_frame_id>
+        <topic>scan</topic>
+        <update_rate>15</update_rate>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>2800</samples>
+              <resolution>1</resolution>
+              <min_angle>-2.356194</min_angle>
+              <max_angle>2.356194</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <resolution>0.1</resolution>
+              <min_angle>0.0</min_angle>
+              <max_angle>0.0</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.15</min>
+            <max>25</max>
+            <resolution>0.01</resolution>
+          </range>
+          <frame_id>/lidar_link</frame_id>
+        </lidar>
+        <always_on>1</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </link>
 
     <joint name="front_camera_lens_joint" type="fixed">
       <pose relative_to="front_camera">-0.0417559516683845 0.0089685062555078607 0.00261605881210059 -3.14159265358979 0 1.5707963267949003</pose>
@@ -421,8 +458,8 @@
         <camera name="left_camera">
           <horizontal_fov>1.91986</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>2560</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.001</near>
@@ -565,8 +602,8 @@
         <camera name="right_camera">
           <horizontal_fov>1.91986</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>2560</width>
+            <height>720</height>
           </image>
           <clip>
             <near>0.001</near>

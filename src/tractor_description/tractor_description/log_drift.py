@@ -25,7 +25,7 @@ class DriftLogger(Node):
         self._latest_gt   = None
 
         # Subscribers
-        self.create_subscription(Odometry, '/odom', self._odom_cb, 10)
+        self.create_subscription(Odometry, '/odometry/filtered', self._odom_cb, 10)
         self.create_subscription(Odometry, '/gt_pose_no_drift', self._gt_cb, 10)
 
         self.get_logger().info(f"DriftLogger initialized; will save to '{self.csv_path}' on shutdown.")

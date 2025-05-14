@@ -28,30 +28,34 @@ def generate_launch_description():
     localization = LaunchConfiguration('localization')
     ground_truth = LaunchConfiguration('ground_truth')
     odometry_params = {
-        "rgbd_cameras": 1,
+        "rgbd_cameras": 3,
         "use_sim_time": use_sim_time,
         "frame_id": "base_link",
         "odom_frame_id": "vodom",
         "guess_frame_id": "odom",
-        "subscribe_rgbd": False,
-        "subscribe_rgb": True,
-        "subscribe_depth": True,
-        "subscribe_scan": False,
+        "subscribe_rgbd": True,
+        "subscribe_rgb": False,
+        "subscribe_depth": False,
+        "subscribe_scan": True,
+        "Grid/Sensor": "2",                     # 0=Laser, 1=RGBD, 2=laser+RGBD
+        "Vis/EstimationType":"0",                #[Motion estimation approach: 0:3D->3D, 1:3D->2D (PnP), 2:2D->2D (Epipolar Geometry)]
         'RGBD/NeighborLinkRefining': 'true',    # Do odometry correction with consecutive laser scans
         'RGBD/ProximityBySpace':     'true',    # Local loop closure detection (using estimated position) with locations in WM
         'RGBD/ProximityByTime':      'false',   # Local loop closure detection with locations in STM
         'RGBD/ProximityPathMaxNeighbors': '10', # Do also proximity detection by space by merging close scans together.
         'Reg/Strategy':              '2',       # 0=Visual, 1=ICP, 2=Visual+ICP
         'Vis/MinInliers':            '12',      # 3D visual words minimum inliers to accept loop closure
-        'RGBD/OptimizeFromGraphEnd': 'true',   # Optimize graph from initial node so /map -> /odom transform will be generated
+        "RGBD/ProximityGlobalScanMap": "true", # Proximity detection with global scan map
+        'RGBD/OptimizeFromGraphEnd': 'true',    # Optimize graph from initial node so /map -> /odom transform will be generated
         'RGBD/OptimizeMaxError':     '4',       # Reject any loop closure causing large errors (>3x link's covariance) in the map
         'Reg/Force3DoF':             'true',    # 2D SLAM
-        'Grid/FromDepth':            'true',   # Create 2D occupancy grid from laser scan
+        'Grid/FromDepth':            'true',    # Create 2D occupancy grid from laser scan
         'Mem/STMSize':               '30',      # increased to 30 to avoid adding too many loop closures on just seen locations
         'RGBD/LocalRadius':          '2',       # limit length of proximity detections
         'Icp/CorrespondenceRatio':   '0.2',     # minimum scan overlap to accept loop closure
-        'Icp/PM':                    'false',
+        'Icp/PM':                    'false',   # 
         'Icp/PointToPlane':          'true',    # Use point-to-plane ICP
+        'Odom/Strategy':              '0',       # [0=Frame-to-Map (F2M) 1=Frame-to-Frame (F2F) 2=Fovis 3=viso2 4=DVO-SLAM 5=ORB_SLAM2 6=OKVIS 7=LOAM 8=MSCKF_VIO 9=VINS-Fusion 10=OpenVINS 11=FLOAM 12=Open3D]
         'Icp/MaxCorrespondenceDistance': '0.15',
         'Icp/VoxelSize':             '0.2',
         "Rtabmap/DetectionRate": "5", # 5Hz
@@ -75,6 +79,8 @@ def generate_launch_description():
           'subscribe_scan':False,
           'approx_sync':True,
           'sync_queue_size': 10,
+          "Grid/Sensor": "2",                     # 0=Laser, 1=RGBD, 2=laser+RGBD
+          "Vis/EstimationType":"0",                #[Motion estimation approach: 0:3D->3D, 1:3D->2D (PnP), 2:2D->2D (Epipolar Geometry)]
           # RTAB-Map's internal parameters should be strings
           'RGBD/NeighborLinkRefining': 'true',    # Do odometry correction with consecutive laser scans
           'RGBD/ProximityBySpace':     'true',    # Local loop closure detection (using estimated position) with locations in WM
@@ -105,6 +111,11 @@ def generate_launch_description():
         ('rgbd_image1', 'right/rgbd_image'),
         ('rgbd_image2', 'left/rgbd_image'),
         ('odom', 'odom'),
+    ]
+    remappings_odom=[
+        ('rgbd_image0', 'front/rgbd_image'),
+        ('rgbd_image1', 'right/rgbd_image'),
+        ('rgbd_image2', 'left/rgbd_image'),
     ]
     remappings1=[
          ('/rgb/image',       'front/rgb/image'),
@@ -171,7 +182,7 @@ def generate_launch_description():
         Node(
             package='rtabmap_odom', executable='rgbd_odometry', output='screen',
             parameters=[odometry_params, {'odom_frame_id': 'odom'}],
-            remappings=remappings1,
+            remappings=remappings_odom,
             arguments=["--ros-args", "--log-level", 'info']),
             
         # Localization mode:
