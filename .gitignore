@@ -3,3 +3,4 @@ build/
 install/
 log/
 cdds.*
+rosbag*
