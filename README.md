@@ -11,15 +11,17 @@
 </p>
 
 ### Tractor Specification
+
 |**Specification**  |**Value**   |
 |-------------------|------------|
 | Wheel base        |1800 mm     |
 | Rear Wheel track  |1545 mm     |
+| front Wheel track |1280 mm     |
 | Rear wheel radius |500  mm     |
 | Front wheel radius|326  mm     |
-| King pin width    |            |
-| Max steering angle|            |
-| Max speed         |            |
+| King pin width    |1500 mm     |
+| Max steering angle|30°         |
+| Max speed         |15 km/h     |
 
 ## Overview
 
