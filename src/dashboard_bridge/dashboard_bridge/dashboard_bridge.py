@@ -15,14 +15,10 @@ class DashboardBridge(Node):
         self.bridge = CvBridge()
         
         # Publishers
-        self.linear_vel_pub = self.create_publisher(Float32, 'robot/linear_velocity', 1)
-        self.angular_vel_pub = self.create_publisher(Float32, 'robot/angular_velocity', 1)
-        self.imu_pitch_pub = self.create_publisher(Float32, 'robot/imu/pitch', 1)
-        self.imu_roll_pub = self.create_publisher(Float32, 'robot/imu/roll', 1)
-        self.imu_yaw_pub = self.create_publisher(Float32, 'robot/imu/yaw', 1)
-        self.navsat_location_latitude = self.create_publisher(Float32, 'robot/location/latitude', 1)
-        self.navsat_location_longitude = self.create_publisher(Float32, 'robot/location/longitude', 1)
-        self.camera_pub= self.create_publisher(Image, 'robot/camera/image_raw', 1)
+        self.vel_pub = self.create_publisher(Odometry, 'robot/velocity', 1)
+        self.imu_pub = self.create_publisher(Imu, 'robot/imu', 1)
+        self.navsat_location = self.create_publisher(NavSatFix, 'robot/location', 1)
+        self.camera_pub = self.create_publisher(Image, 'robot/camera/image_raw', 1)
         # subscribers
         self.create_subscription(Odometry, '/odom', self.publishSpeedCallback, 1)
         self.create_subscription(Imu, '/imu', self.publishImuCallback, 1)
