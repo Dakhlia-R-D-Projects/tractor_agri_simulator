@@ -1,0 +1,3 @@
+[submodule "src/dashboard"]
+	path = src/dashboard
+	url = https://github.com/Dakhlia-R-D-Projects/Mobile_Robot_Dashboard_ROS2.git
